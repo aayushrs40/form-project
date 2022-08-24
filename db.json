@@ -1,0 +1,38 @@
+{
+  "posts": [
+    {
+      "userid": 2,
+      "id": "aalum",
+      "title": "heroni",
+      "status": "incomplete"
+    },
+    {
+      "id": "Rajan",
+      "userid": 1,
+      "title": "developer",
+      "status": "incomplete"
+    },
+    {
+      "userid": 6,
+      "id": "Rajanni",
+      "title": "developer",
+      "status": "incomplete"
+    },
+    {
+      "userid": 55,
+      "id": "Umesh",
+      "title": "Singer",
+      "status": "Completed"
+    },
+    {
+      "userid": 55,
+      "id": "giri",
+      "title": "Singer",
+      "status": "Completed"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
