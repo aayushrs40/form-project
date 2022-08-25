@@ -1,8 +1,8 @@
 <nav class="navbar navbar-light bg-primary">
     <div class="contrainer-fluid">
         <h1 style="color:aliceblue">Angular CRUD</h1>
-        <div class="d-flex">
-            <button  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add
+        <div class="d-flex" >
+            <button  (click)="formreset() "type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add
                 Employee</button>
         </div>
     </div>
@@ -10,21 +10,20 @@
 <table class="table ">
     <thead>
         <tr>
-           
-            <th scope="col">User ID</th>
             <th scope="col">ID</th>
             <th scope="col">Title</th>
+            <th scope="col">Description</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let row of employeeData">
-            <td>{{row.userid}}</td>
             <td>{{row.id}}</td>
-            
             <td>{{row.title}}</td>
+            <td>{{row.description}}</td>
             <td>{{row.status}}</td>
+
             <td>
                 <button (click)="onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
                 <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
@@ -44,29 +43,41 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="formValue">
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">User ID</label>
-                        <input type="number" formControlName="userid" class="form-control" id="exampleInputUserID"
-                            aria-describedby="emailHelp">
-
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">ID</label>
-                        <input type="text" formControlName="id" class="form-control" id="exampleInputID"
-                            aria-describedby="emailHelp">
-
-                    </div>
+                <form [formGroup]="formValue">                    
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Title</label>
                         <input type="text" formControlName="title" class="form-control" id="exampleInputTitle"
                             aria-describedby="emailHelp">
+                            <div *ngIf="formValue.invalid && (formValue.dirty || formValue.touched)"
+                            class="alert alert-danger">
+                        
+                          <div *ngIf="formValue.errors?.['required']">
+                            Title is required.
+                          </div>
+                          <div *ngIf="formValue.errors?.['maxlength']">
+                            Title must be not be more than 16 characters.
+                          </div>
+                          
+                        </div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Description</label>
+                        <textarea type="number" formControlName="description" class="form-control" id="exampleInputUserID"
+                            aria-describedby="emailHelp"></textarea>
+                            
+
 
                     </div>
                     <div class="mb-3">
                         <label  class="form-label">Status</label>
-                        <input type="string" formControlName="status" class="form-control" id="exampleInputStatus"
+                        <select type="select" formControlName="status" class="form-control" id="exampleInputStatus"
                             aria-describedby="emailHelp">
+                            
+                            <option selected="selected" value="1">Completed</option>
+                            <option value="0">Incomplete</option>
+                                
+                      </select>
 
                     </div>
 
@@ -75,8 +86,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button"  (click)="postEmployeedetails()" class="btn btn-primary">Add</button>
-                <button type="button"  (click)="UpdateEmployeedetails()" class="btn btn-primary">Update</button>
+                <button type="button" *ngIf="!isUpdated"  (click)="postEmployeedetails()" class="btn btn-primary">Add</button>
+                <button type="button" *ngIf="isUpdated"  (click)="UpdateEmployeedetails()" class="btn btn-primary">Update</button>
             </div>
         </div>
     </div>
