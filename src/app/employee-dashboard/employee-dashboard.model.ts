@@ -4,5 +4,6 @@ export class EmployeeModel{
     title:any='';
     description:any = '';
     status:any='';
+    image:any=''
     
 }

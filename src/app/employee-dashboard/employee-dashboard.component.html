@@ -4,6 +4,7 @@
         <div class="d-flex" >
             <button  (click)="formreset() "type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Add
                 Employee</button>
+                <button routerLink="/login" class="btn btn-danger mx-2">LogOut</button>
         </div>
     </div>
 </nav>
@@ -11,9 +12,10 @@
     <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Title</th>
+            <th scope="col">Employee Name</th>
             <th scope="col">Description</th>
             <th scope="col">Status</th>
+            <th scope="col">Image</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -23,6 +25,7 @@
             <td>{{row.title}}</td>
             <td>{{row.description}}</td>
             <td>{{row.status}}</td>
+            <td>{{row.image}}</td>
 
             <td>
                 <button (click)="onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
@@ -45,22 +48,16 @@
             <div class="modal-body">
                 <form [formGroup]="formValue">                    
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Title</label>
+                        <label for="exampleInputEmail1" class="form-label">Employee Name</label>
                         <input type="text" formControlName="title" class="form-control" id="exampleInputTitle"
                             aria-describedby="emailHelp">
-                            <div *ngIf="formValue.invalid && (formValue.dirty || formValue.touched)"
-                            class="alert alert-danger">
-                        
-                          <div *ngIf="formValue.errors?.['required']">
-                            Title is required.
-                          </div>
-                          <div *ngIf="formValue.errors?.['maxlength']">
-                            Title must be not be more than 16 characters.
-                          </div>
+                            
+                          <span class="text-danger" *ngIf="formValue.controls['title'].dirty && formValue.hasError('required','title')">*Space can't be left empty</span>
                           
                         </div>
+                    
 
-                    </div>
+                    <!-- </div> -->
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Description</label>
                         <textarea type="number" formControlName="description" class="form-control" id="exampleInputUserID"
@@ -80,6 +77,9 @@
                       </select>
 
                     </div>
+                    <!-- <div>
+                        <input type="file" (change)="onFileSelected($event)">
+                    </div> -->
 
 
                 </form>

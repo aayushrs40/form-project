@@ -6,17 +6,23 @@ import { AppComponent } from './app.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import {HttpClientModule} from '@angular/common/http'
 import { ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeDashboardComponent
+    EmployeeDashboardComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxCaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

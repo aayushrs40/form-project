@@ -9,7 +9,7 @@ import { EmployeeModel } from './employee-dashboard.model';
   styleUrls: ['./employee-dashboard.component.css']
 })
 export class EmployeeDashboardComponent implements OnInit {
-
+  
   formValue !: FormGroup;
   isUpdated = false;
   employeeModelObj: EmployeeModel = new EmployeeModel();
